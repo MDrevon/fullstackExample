@@ -38,9 +38,9 @@ function createInput() {
   $container.append($genre);
 }
 
-function createGenreList() {
+async function createGenreList() {
   let $genre = $(`<label>Genre:</label><select id="genres"/>`);
-  let genres = fetch(`/api/genres`, {
+  let genres = await fetch(`/api/genres`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
