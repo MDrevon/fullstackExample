@@ -16,7 +16,7 @@ db.connect();
 //Middleware for handling JSON and serving html
 app.use(express.json());
 app.use(bodyParser.json());
-app.use(express.static("public"));
+//app.use(express.static("public"));
 
 app.set("view engine", "html");
 app.engine("html", require("ejs").renderFile);
@@ -32,7 +32,7 @@ app.get("/api/records", (req, res) => {
   });
 });
 
-app.post("/records", (req, res) => {
+app.post("/api/records", (req, res) => {
   db.query(`INSERT INTO records (recordname, artist, genre) VALUES($1,$2,$3)`, [
     req.body.recordname,
     req.body.artist,
