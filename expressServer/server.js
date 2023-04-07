@@ -32,6 +32,12 @@ app.get("/api/records", (req, res) => {
   });
 });
 
+app.get("/api/genres", (req, res) => {
+  db.query(`SELECT * FROM records ORDER BY genreName ASC`).then((results) => {
+    res.send(results.rows);
+  });
+});
+
 app.post("/api/records", (req, res) => {
   db.query(`INSERT INTO records (recordname, artist, genre) VALUES($1,$2,$3)`, [
     req.body.recordname,
