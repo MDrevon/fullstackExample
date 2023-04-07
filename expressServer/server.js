@@ -26,7 +26,7 @@ app.get("/", (req, res) => {
   res.send("test");
 });
 
-app.get("/records", (req, res) => {
+app.get("/api/records", (req, res) => {
   db.query(`SELECT * FROM records`).then((results) => {
     res.send(results.rows);
   });

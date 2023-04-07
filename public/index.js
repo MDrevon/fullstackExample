@@ -18,7 +18,7 @@ $submit.on("click", () => {
   let genrename = $genre.val();
   let albumJson = { recordname: record, artist: artistname, genre: genrename };
 
-  fetch(`http://localhost:3000/records`, {
+  fetch(`/api/records`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -27,5 +27,4 @@ $submit.on("click", () => {
   })
     .then((response) => response.json())
     .then((data) => console.log(data));
-
 });
