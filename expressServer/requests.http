@@ -1,0 +1,15 @@
+### Test
+GET http://localhost:3000/
+
+### Get All Records
+GET http://localhost:3000/records
+
+### Insert Record
+POST http://localhost:3000/records
+Content-Type: application/json
+
+{
+    "recordname": "Dead Winter Dead",
+    "artist": "Savatage",
+    "genre": "Metal"
+}
