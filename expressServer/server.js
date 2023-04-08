@@ -16,7 +16,7 @@ db.connect();
 //Middleware for handling JSON and serving html
 app.use(express.json());
 app.use(bodyParser.json());
-//app.use(express.static("public"));
+app.use(express.static("public"));
 
 app.set("view engine", "html");
 app.engine("html", require("ejs").renderFile);
@@ -33,9 +33,14 @@ app.get("/api/records", (req, res) => {
 });
 
 app.get("/api/genres", (req, res) => {
-  db.query(`SELECT * FROM records ORDER BY genreName ASC`).then((results) => {
-    res.send(results.rows);
-  });
+  db.query(`SELECT * FROM genres ORDER BY genreName ASC`)
+    .then((results) => {
+      res.send(results.rows);
+    })
+    .catch((error) => {
+      console.log(error);
+      res.status(500).send("Internal Server Error");
+    });
 });
 
 app.post("/api/records", (req, res) => {

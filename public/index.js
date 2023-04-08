@@ -30,8 +30,12 @@ $submit.on("click", () => {
 });
 
 function createInput() {
-  let $record = $(`<label>Record Name:</label><input id="recordName"></input>`);
-  let $artist = $(`<label>Artist Name:</label><input id="artistName"></input>`);
+  let $record = $(
+    `<label>Record Name:</label><input id="recordName"></input><br/>`
+  );
+  let $artist = $(
+    `<label>Artist Name:</label><input id="artistName"></input><br/>`
+  );
   let $genre = createGenreList();
   $container.append($record);
   $container.append($artist);
@@ -40,16 +44,16 @@ function createInput() {
 
 async function createGenreList() {
   let $genre = $(`<label>Genre:</label><select id="genres"/>`);
-  let genres = await fetch(`/api/genres`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      console.log(data);
-    });
-  console.log(genres);
+  try {
+    let results = await fetch(`/api/genres`);
+    let genres = await results.json();
+
+    // forEach(genre => {
+
+    // });
+    console.log(genres);
+  } catch (error) {
+    console.log(error);
+  }
   return $genre;
 }
